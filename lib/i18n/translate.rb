@@ -96,6 +96,7 @@ module I18n::Translate
   end
 
   def self.set(key, value, hash, separator=".")
+    begin
     h = hash
     path = key.to_s.split(separator)
     path[0..-2].each do |chunk|
@@ -106,6 +107,8 @@ module I18n::Translate
       h.delete(path[-1])
     else
       h[path[-1]] = value
+    end
+    rescue
     end
   end
 
